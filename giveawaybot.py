@@ -4,7 +4,7 @@ import sys
 import datetime
 from slackclient import SlackClient
 from reddit_func import reddit_update
-from db import insert_post
+from db import check_post
 
 # instantiate Slack & Twilio clients
 slack_client = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))
@@ -46,7 +46,7 @@ if __name__ == "__main__":
         while True:
             # time.sleep(READ_WEBSOCKET_DELAY)
             print("running handler")
-            insert_post(reddit_update())
+            print(check_post(reddit_update()))
             for i in range(READ_WEBSOCKET_DELAY):
                 sys.stdout.write("{0}s\r".format(i))
                 sys.stdout.flush()
